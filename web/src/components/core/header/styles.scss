@@ -1,0 +1,29 @@
+.header-app {
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 15px;
+    height: 70px;
+    width: calc(100% - 30px);
+    border-bottom: 1px solid #c3c3c3;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    
+    .logo-app {
+        height: 90px;
+        width: 100px;
+        object-fit: contain;
+    }
+
+    .btns-wrapper {
+        &.flex-end {
+            margin-left: auto;
+        }
+
+        .mr-10 {
+            margin-right: 10px;
+        }
+    }
+}
