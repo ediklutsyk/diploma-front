@@ -1,0 +1,31 @@
+.month-slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+
+    .arrow {
+        border: solid #A1A1A1;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px;
+        cursor: pointer;
+    }
+      
+    .right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+      
+    .left {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    }
+
+    .current-value {
+        text-transform: capitalize;
+        color: #252C3B;
+        font-size: 16px;
+    }
+}

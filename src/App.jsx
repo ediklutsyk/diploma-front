@@ -1,13 +1,17 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Header from './components/core/header';
 import LoginDialog from './components/core/auth/login-dialog';
 import SignUpDialog from './components/core/auth/signup-dialog';
+import 'dayjs/locale/uk' // load on demand
 
 import './App.scss';
 import {AuthPage} from "./components/core/auth/auth-page";
 import {PrivateRoute} from "./components/core/auth/private-route";
 import {MainView} from "./components/core/main-view";
+
+dayjs.locale('uk');
 
 const privateRoutes = [
     {

@@ -1,0 +1,59 @@
+.operation-item-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    .left-row {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        .image {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            position: relative;
+            .background-color {
+                width: 100%;
+                height: 100%;
+                opacity: 0.2;
+                border-radius: 50%;
+            }
+            img {
+                position: absolute;
+                top: 30%;
+                left: 30%;
+            }
+        }
+        .info-box {
+            display: flex;
+            flex-direction: column;
+            .category-bill {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 10px;
+                align-items: center;
+                .category-name {
+                    font-size: 15px;
+                    color: #001026;
+                    margin-right: 10px;
+                }
+                .bill-name {
+                    color: #616C7A;
+                    font-size: 13px;
+                }
+            }
+            .comment {
+                font-size: 13px;
+                color: #616C7A;
+            }
+        }
+    }
+    .right-row {
+        color: #001026;
+        font-size: 15px;
+    }
+}

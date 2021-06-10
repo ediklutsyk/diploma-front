@@ -1,0 +1,19 @@
+.operation-list {
+    display: flex;
+    flex-direction: column;
+    .operation-list-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        .date {
+            color: #001026;
+            font-size: 13px;
+        }
+        .sum {
+            color: #616C7A;
+            font-size: 13px;
+        }
+    }
+}

@@ -24,13 +24,13 @@ const useStyles = makeStyles({
 
 export const Navigation = () => {
     const dispatch = useDispatch();
-    const [tabState, setTabState] = useState(2)
+    const [tabState, setTabState] = useState(2);
     const classes = useStyles();
 
     const handleTabs = (value) => {
         console.log("handle tabs", value)
         setTabState(value);
-        dispatch(allActions.pane.switchedPane(value))
+        dispatch(allActions.pane.switchedPane(value));
     }
 
     return (
