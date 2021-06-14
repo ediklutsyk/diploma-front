@@ -1,6 +1,21 @@
-.home-wrapper {
+.bill-wrapper {
   padding: 0 10px;
   padding-top: 15px;
+}
+.bill-wrapper .bill-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.bill-wrapper .bill-header .bills-title {
+  color: #252C3B;
+  font-size: 18px;
+}
+.bill-wrapper .bill-header .sum {
+  color: #1F8B24;
+  font-size: 16px;
 }
 
 /*# sourceMappingURL=styles.css.map */

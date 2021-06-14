@@ -5,7 +5,16 @@ import {lighten} from "@material-ui/core";
 
 import './styles.scss';
 
-const getColorHex = (color) => {
+const useStyles = makeStyles({
+    svg: props => ({
+        '& svg path': {
+            fill: props.color
+        }
+    })
+});
+
+/*
+export const getColorHex = (color) => {
     switch (color) {
         case 'yellow':
             return '#FFCF33'
@@ -27,20 +36,13 @@ const getColorHex = (color) => {
             return '#000000'
     }
 }
+*/
 
-const useStyles = makeStyles({
-    svg: props => ({
-        '& svg path': {
-            fill: props.color
-        }
-    })
-});
 
 const Icon = ({icon, color}) => {
-    const hex = getColorHex(color);
-    const classes = useStyles({color: hex});
+    const classes = useStyles({color: color});
     return (
-        <div className="image" style={{backgroundColor: lighten(hex, 0.8)}}>
+        <div className="image" style={{backgroundColor: lighten(color, 0.8)}}>
             <ReactSVG className={classes.svg} src={`${process.env.PUBLIC_URL}/category-icons/${icon}`}/>
         </div>
     );

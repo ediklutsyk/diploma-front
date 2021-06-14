@@ -1,0 +1,18 @@
+.category-item-box{
+  //background-color: green;
+  display: flex;
+  .content{
+    margin-left: 15px;
+    .name{
+      //margin-bottom: 5px;
+    }
+    .price{
+      font-weight: 600;
+      display: flex;
+      //background-color: yellow;
+      .total{
+        margin-left: 5px;
+      }
+    }
+  }
+}
