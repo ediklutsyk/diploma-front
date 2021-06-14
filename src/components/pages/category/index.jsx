@@ -4,64 +4,16 @@ import {useDispatch, useSelector} from 'react-redux';
 import './styles.scss';
 import MonthSlider from "../../core/month-slider";
 import {getCategories} from "../../../utils/api";
-import CategoryItem from "../../core/category-item";
 import {Doughnut} from "react-chartjs-2";
+import CategoryList from "../../core/category-list";
 
-const data = [
-    {
-        icon: '',
-        categoryName: 'Продукти',
-        categoryColor: '#0F56B3',
-        billName: 'Основна картка',
-        sum: '36',
-        comment: 'Сiльпо',
-        isIncome: false,
-        date: '2021-06-09',
-        id: 1
-    },
-    {
-        icon: '',
-        categoryName: 'Продукти',
-        categoryColor: '#0F56B3',
-        billName: 'Основна картка',
-        sum: '36',
-        comment: 'Сiльпо',
-        isIncome: false,
-        date: '2021-06-09',
-        id: 2
-    },
-    {
-        icon: '',
-        categoryName: 'Продукти',
-        categoryColor: '#0F56B3',
-        billName: 'Основна картка',
-        sum: '36',
-        comment: 'Сiльпо',
-        isIncome: false,
-        date: '2021-06-06',
-        id: 3
-    },
-    {
-        icon: '',
-        categoryName: 'Продукти',
-        categoryColor: '#0F56B3',
-        billName: 'Основна картка',
-        sum: '36',
-        comment: 'Сiльпо',
-        isIncome: false,
-        date: '2021-06-03',
-        id: 4
-    }
-];
 
 const dataChart = {
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
         {
-            label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
-                'rgba(255, 99, 132, 1)',
+                '#032c55',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
@@ -73,56 +25,64 @@ const dataChart = {
 
 };
 
-const options = {
-    cutoutPercentage: 60
+const chartOptions = {
+    cutout: 105,
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: {
+        tooltip: {
+            enabled: false
+        }
+    }
 }
 
 const Category = () => {
-    const dispatch = useDispatch();
     const userData = useSelector(state => state.user);
     const [items, setItems] = useState([]);
+    // const [dataSet, setDataSet] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
 
     useEffect(() => {
-        // todo make request
-        console.log('elected date')
+        console.log('selected date', selectedDate)
+        if (selectedDate) {
+            handleCategories(selectedDate.get('month'), selectedDate.get('year')).catch(error => {
+                console.log('handled categories by selected date error', error)
+            });
+        }
     }, [selectedDate]);
 
-
-    useEffect(() => {
-        getCategories(userData.token).then((data) => {
-            console.log('data', data);
-            setItems(data.data);
-        });
-    }, []);
+    const handleCategories = (month, year) => getCategories({
+        token: userData.token,
+        month: month + 1,
+        year: year
+    }).then((data) => {
+        console.log('data', data);
+        setItems(data.data);
+        // setDataSet()
+    });
 
     return (
-        <div className="home-wrapper">
+        <div className="category-wrapper">
             <MonthSlider onChange={setSelectedDate}/>
             <div className="chart">
-                <span>{items.reduce((accumulator, currentValue) => accumulator + currentValue.totalByCategory, 0)}</span>
-                <Doughnut data={dataChart} options={{
-                    cutout: 130,
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        tooltip: {
-                            enabled: false
-                        }
-                    }
-                }}/>
-            </div>
+                <div className="spending">
+                    <div className="spending-content">
+                        <p>Витрати</p>
+                        <p className="total">{items.reduce((accumulator, currentValue) => accumulator + currentValue.totalByCategory, 0)} ₴</p>
+                    </div>
+                </div>
+                {/*{console.log('dataset render', dataSet, dataSet.datasets)}*/}
+                {items && items.length >0 ? <Doughnut data={{
+                    datasets: [
+                        {
+                            data: items.map(item => item.totalByCategory),
+                            backgroundColor: items.map(item => item.color),
+                        },
+                    ]
+                }} options={chartOptions}/>: null}
 
-            {items && items.length ? items.map(item => (
-                <CategoryItem
-                    key={item._id}
-                    icon={item.icon}
-                    name={item.name}
-                    color={item.color}
-                    total={item.totalByCategory}
-                    percent={item.percent}
-                />
-            )) : <p>Category works</p>}
+            </div>
+            <CategoryList data={items}/>
         </div>
     );
 

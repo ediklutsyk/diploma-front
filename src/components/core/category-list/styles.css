@@ -1,0 +1,9 @@
+.category-list {
+  margin: 2em 1em;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 2;
+}
+
+/*# sourceMappingURL=styles.css.map */
