@@ -109,7 +109,7 @@ const Bill = () => {
             {accumulationItems.map((item) => (
                 <AccumulationItem
                     icon={item.icon}
-                    name={item.name}
+                    name={item.billName}
                     color={item.color}
                     sum={item.sum}
                     currency={item.currency}

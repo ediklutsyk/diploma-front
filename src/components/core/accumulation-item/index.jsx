@@ -34,6 +34,8 @@ const AccumulationItem = ({
                             completed={calculateProgressBarValue(item.current_balance, item.required_balance)}
                             bgColor={item.color}
                             isLabelVisible={false}
+                            className="progress-bar"
+                            height={10}
                         />
                     </div>
                 )) : null}

@@ -100,7 +100,7 @@ const Category = () => {
         <div className="home-wrapper">
             <MonthSlider onChange={setSelectedDate}/>
             <div className="chart">
-                <span>{items.reduce((accumulator, currentValue) => accumulator + currentValue.totalByCategory, 0)}</span>
+                <span>{items && items.reduce((accumulator, currentValue) => accumulator + currentValue.totalByCategory, 0)}</span>
                 <Doughnut data={dataChart} options={{
                     cutout: 130,
                     responsive: true,

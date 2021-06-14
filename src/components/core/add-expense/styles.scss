@@ -1,0 +1,41 @@
+.header-card-category {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+    .half-width-card {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        p {
+            color: #252C3B;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+        .bill-info {
+            display: flex;
+            align-items: center;
+            .name {
+                color: #373737;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.expense-content {
+    .title {
+        color: #252C3B;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .input-calculator {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        .calculator {
+            margin-left: 10px;
+        }
+    }
+}
