@@ -8,10 +8,20 @@ const CategoryItem = ({
                           name,
                           color,
                           percent,
-                          total
+                          total,
+                          onClick
                       }) => {
     return (
-        <div className="category-item-box">
+        <div className="category-item-box" onClick={() => {
+            if(onClick)
+                onClick({
+                    icon,
+                    name,
+                    color,
+                    percent,
+                    total
+                });
+        }}>
             <Icon icon={icon} color={color}/>
             <div className="content">
                 <div className="category-name">

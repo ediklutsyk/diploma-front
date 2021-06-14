@@ -19,8 +19,19 @@ export const signUp = (data) => {
 
 export const getCategories = (payload) => {
     // 'Authorization': `Bearer ${payload.token}`
-    return axios.get(`${SERVER_URL}/categories/user`,
-        {headers: {Authorization: 'Bearer ' + payload}}).then((response) => {
+    return axios.get(`${SERVER_URL}/categories/user?month=${payload.month}&year=${payload.year}`,
+        {headers: {Authorization: 'Bearer ' + payload.token}}).then((response) => {
+        return response;
+    }).catch((error) => {
+        return error;
+    })
+};
+
+
+export const getBills = (payload) => {
+    // 'Authorization': `Bearer ${payload.token}`
+    return axios.get(`${SERVER_URL}/bills/user?month=${payload.month}&year=${payload.year}`,
+        {headers: {Authorization: 'Bearer ' + payload.token}}).then((response) => {
         return response;
     }).catch((error) => {
         return error;

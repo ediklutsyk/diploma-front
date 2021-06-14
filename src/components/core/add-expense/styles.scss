@@ -3,11 +3,14 @@
     align-items: center;
     width: 100%;
     margin-bottom: 15px;
+    height: 70px;
     .half-width-card {
         display: flex;
         flex-direction: column;
         width: 100%;
+        height: 100%;
         padding: 10px;
+        cursor: pointer;
         p {
             color: #252C3B;
             font-size: 12px;

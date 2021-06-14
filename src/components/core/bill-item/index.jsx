@@ -7,10 +7,20 @@ const BillItem = ({
     billName,
     billColor,
     sum,
-    currency
+    currency,
+    onClick
 }) => {
     return (
-        <div className="bill-item-box">
+        <div className="bill-item-box" onClick={() => {
+            if(onClick)
+                onClick({
+                    icon,
+                    name: billName,
+                    color: billColor,
+                    sum,
+                    currency
+                });
+        }}>
             <div className="left-row">
                 <div className="image">
                     <div className="background-color" style={{ backgroundColor: billColor }}></div>
