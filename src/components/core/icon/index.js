@@ -39,12 +39,17 @@ export const getColorHex = (color) => {
 */
 
 
-const Icon = ({icon, color}) => {
+const Icon = ({icon, color, noBackground}) => {
     const classes = useStyles({color: color});
     return (
-        <div className="image" style={{backgroundColor: lighten(color, 0.8)}}>
-            <ReactSVG className={classes.svg} src={`${process.env.PUBLIC_URL}/category-icons/${icon}`}/>
-        </div>
+        <>
+            {noBackground ?
+                <ReactSVG className={classes.svg} src={`${process.env.PUBLIC_URL}/category-icons/${icon}`}/> :
+                <div className="image" style={{backgroundColor: lighten(color, 0.8)}}>
+                    <ReactSVG className={classes.svg} src={`${process.env.PUBLIC_URL}/category-icons/${icon}`}/>
+                </div>
+            }
+        </>
     );
 };
 

@@ -1,33 +1,31 @@
 import React from 'react';
 
 import './styles.scss';
+import Icon from "../icon";
 
 const OperationItem = ({
-    icon,
-    categoryName,
-    categoryColor,
-    billName,
-    sum,
-    comment,
-    isIncome
-}) => {
+                           categoryIcon,
+                           categoryName,
+                           categoryColor,
+                           billName,
+                           amount,
+                           description,
+                           type
+                       }) => {
     return (
         <div className="operation-item-box">
             <div className="left-row">
-                <div className="image">
-                    <div className="background-color" style={{ backgroundColor: categoryColor }}></div>
-                    <img src={`${process.env.PUBLIC_URL}/core-icons/${icon}.svg`}/>
-                </div>
+                <Icon icon={categoryIcon} color={categoryColor}/>
                 <div className="info-box">
                     <div className="category-bill">
                         <p className="category-name">{categoryName}</p>
                         <p className="bill-name">{billName}</p>
                     </div>
-                    {comment ? <p className="comment">{comment}</p> : null}
+                    {description ? <p className="comment">{description}</p> : null}
                 </div>
             </div>
             <div className="right-row">
-                {!isIncome ? '-' : ''}{sum} ₴
+                {type === 'spend' ? '-' : ''}{amount} ₴
             </div>
         </div>
     );

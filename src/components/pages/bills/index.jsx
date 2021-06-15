@@ -4,6 +4,7 @@ import BillItem from '../../core/bill-item';
 import AccumulationItem from '../../core/accumulation-item';
 
 import './styles.scss';
+import {getBills} from "../../../utils/api";
 
 const bills = [
     {
@@ -48,8 +49,9 @@ const bills = [
     }
 ];
 
-const Bill = () => {
+const Bill = ({shown}) => {
     const dispatch = useDispatch();
+    const userData = useSelector(state => state.user);
     const [billSum, setBillSum] = useState(0);
     const [accumulationSum, setAccumulationSum] = useState(0);
     const [billItems, setBillItems] = useState([]);
@@ -60,9 +62,9 @@ const Bill = () => {
         if(array && array.length) {
             array.forEach(async (item) => {
                 if(item.currency === toCurrency)
-                    sum += item.sum;
+                    sum += item.balance;
                 else {
-                    const convertedValue = item.sum * 27.5;
+                    const convertedValue = item.balance * 27.5;
                     console.log(convertedValue)
                     sum += convertedValue;
                 }
@@ -71,21 +73,24 @@ const Bill = () => {
         return sum;
     };
 
-    useEffect(() => {
-        if(bills && bills.length) {
-            const newArray = bills.filter((item) => item.type !== 'accumulation');
+    useEffect(()=>{
+        getBills(userData.token).then((data) => {
+            console.log('setBillItems', data);
+            const billItems = data.data;
+            const newArray = billItems.filter((item) => item.type !== 'storing');
             let sum = 0;
             newArray.forEach((item) => {
-                sum += +item.sum;
+                sum += +item.balance;
             });
             setBillSum(sum);
             setBillItems(newArray);
 
-            const accumulations = bills.filter((item) => item.type === 'accumulation');
+            const accumulations = billItems.filter((item) => item.type === 'storing');
+            console.log('accumulations', accumulations)
             setAccumulationSum(calculateSum('UAH', accumulations));
             setAccumulationItems(accumulations);
-        }
-    }, [bills]);
+        });
+    }, [shown])
 
     return (
         <div className="bill-wrapper">
@@ -96,9 +101,9 @@ const Bill = () => {
             {billItems.map((item) => (
                 <BillItem
                     icon={item.icon}
-                    billName={item.billName}
-                    billColor={item.billColor}
-                    sum={item.sum}
+                    name={item.name}
+                    color={item.color}
+                    balance={item.balance}
                     currency={item.currency}
                 />
             ))}
@@ -109,9 +114,9 @@ const Bill = () => {
             {accumulationItems.map((item) => (
                 <AccumulationItem
                     icon={item.icon}
-                    name={item.billName}
+                    name={item.name}
                     color={item.color}
-                    sum={item.sum}
+                    balance={item.balance}
                     currency={item.currency}
                     goals={item.goals}
                 />

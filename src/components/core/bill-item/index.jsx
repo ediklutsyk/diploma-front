@@ -1,12 +1,13 @@
 import React from 'react';
 
 import './styles.scss';
+import Icon from "../icon";
 
 const BillItem = ({
     icon,
-    billName,
-    billColor,
-    sum,
+    name,
+    color,
+    balance,
     currency,
     onClick
 }) => {
@@ -15,23 +16,20 @@ const BillItem = ({
             if(onClick)
                 onClick({
                     icon,
-                    name: billName,
-                    color: billColor,
-                    sum,
+                    name: name,
+                    color: color,
+                    balance,
                     currency
                 });
         }}>
             <div className="left-row">
-                <div className="image">
-                    <div className="background-color" style={{ backgroundColor: billColor }}></div>
-                    <img src={`${process.env.PUBLIC_URL}/core-icons/${icon}.svg`}/>
-                </div>
+                <Icon color={color} icon={icon}/>
                 <div className="info-box">
-                    <p className="bill-name">{billName}</p>
+                    <p className="bill-name">{name}</p>
                 </div>
             </div>
             <div className="right-row">
-                {sum} {currency || '₴'}
+                {balance} {currency || '₴'}
             </div>
         </div>
     );

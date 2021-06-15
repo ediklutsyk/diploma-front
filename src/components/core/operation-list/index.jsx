@@ -18,13 +18,13 @@ const OperationList = ({
             </div>
             {data && data.length ? data.map((item) => (
                 <OperationItem
-                    icon={item.icon}
+                    categoryIcon={item.categoryIcon}
                     categoryName={item.categoryName}
                     billName={item.billName}
                     categoryColor={item.categoryColor}
-                    sum={item.sum}
-                    comment={item.comment}
-                    isIncome={item.isIncome}
+                    amount={item.amount}
+                    description={item.description}
+                    type={item.type}
                 />
             )) : null}
         </div>

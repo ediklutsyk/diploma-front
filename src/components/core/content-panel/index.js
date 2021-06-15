@@ -5,9 +5,10 @@ export const ContentPanel = (props) => {
     const {children, value, index, component: Component, ...other} = props;
 
     console.log(props, value !== index)
+    const shown = value === index;
     return (
-        <div hidden={value !== index} {...other}>
-            <Component/>
+        <div hidden={!shown} {...other}>
+            <Component shown={shown}/>
         </div>
     );
 }

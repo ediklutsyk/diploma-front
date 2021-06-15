@@ -7,7 +7,7 @@ import AddExpense from '../../core/add-expense';
 
 import './styles.scss';
 
-const Home = () => {
+const Home = ({shown}) => {
     const dispatch = useDispatch();
     const [isOpenAddExpense, setIsOpenAddExpense] = useState(false);
 
@@ -33,7 +33,7 @@ const Home = () => {
                             className="fa-lg"
                         />}
                     >
-                        Додати Дохiд
+                        Додати Витрату
                     </Button>
                 </div>
             </div>

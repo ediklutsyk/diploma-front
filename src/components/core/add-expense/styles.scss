@@ -1,44 +1,106 @@
+.dialog-title{
+  display: flex;
+  justify-content: space-between;
+}
+
 .header-card-category {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+  max-height: 70px;
+  height: 60px;
+
+  .half-width-card {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     width: 100%;
-    margin-bottom: 15px;
-    height: 70px;
-    .half-width-card {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-        cursor: pointer;
-        p {
-            color: #252C3B;
-            font-size: 12px;
-            margin-bottom: 7px;
-        }
-        .bill-info {
-            display: flex;
-            align-items: center;
-            .name {
-                color: #373737;
-                font-size: 14px;
-            }
-        }
+    height: 100%;
+    justify-items: center;
+    padding: 10px 0 5px 10px;
+    cursor: pointer;
+
+    p {
+      color: #252C3B;
+      font-size: 12px;
+      margin-bottom: 7px;
     }
+
+    .bill-info {
+      display: flex;
+      justify-self: flex-end;
+      align-items: center;
+
+      .icon svg {
+        display: flex;
+        align-self: center;
+      }
+
+      .name {
+        margin: 0 0 0 5px !important;
+        color: #373737;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.select-category-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 3;
+  margin: 15px 0 !important;
+
+  .category-item-box {
+    margin: 5px 10px 5px 0 !important;
+
+    .content {
+      margin-left: 5px !important;
+
+      .price {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.bills-list {
+  margin: 20px 5px 15px 5px;
+
+  .bill-item-box {
+    margin: 10px 0 0 0 !important;
+  }
 }
 
 .expense-content {
-    .title {
-        color: #252C3B;
-        font-size: 20px;
-        margin-bottom: 10px;
+  .title {
+    color: #252C3B;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .input-calculator {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    input{
+      font-size: 30px;
+      line-height: 100%;
+      text-align: center;
     }
-    .input-calculator {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        .calculator {
-            margin-left: 10px;
-        }
+
+    .calculator {
+      padding: 10px 10px 7px 10px;
+      border-radius: 5px;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      svg{
+        margin: 0 !important;
+        padding: 0 !important;
+      }
     }
+  }
 }

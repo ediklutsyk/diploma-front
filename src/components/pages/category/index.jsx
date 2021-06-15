@@ -38,19 +38,18 @@ const chartOptions = {
     }
 }
 
-const Category = () => {
+const Category = ({shown}) => {
     const userData = useSelector(state => state.user);
     const [items, setItems] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
 
     useEffect(() => {
         if (selectedDate) {
-            chartOptions.animation = true;
             handleCategories(selectedDate.get('month'), selectedDate.get('year')).catch(error => {
                 console.log('handled categories by selected date error', error)
             });
         }
-    }, [selectedDate]);
+    }, [selectedDate, shown]);
 
     const handleCategories = (month, year) => getCategories({
         token: userData.token,
