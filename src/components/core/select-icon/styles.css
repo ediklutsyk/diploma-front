@@ -1,0 +1,22 @@
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.icons .icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: 5px solid transparent;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.icons .image {
+  width: 45px !important;
+  height: 45px !important;
+}
+
+/*# sourceMappingURL=styles.css.map */

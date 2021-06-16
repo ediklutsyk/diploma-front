@@ -6,6 +6,8 @@ import MonthSlider from "../../core/month-slider";
 import {getCategories} from "../../../utils/api";
 import {Doughnut} from "react-chartjs-2";
 import CategoryList from "../../core/category-list";
+import AddCategory from "../../core/add-category";
+import dayjs from "dayjs";
 
 
 const createDataset = (data, colors) => {
@@ -42,6 +44,7 @@ const Category = ({shown}) => {
     const userData = useSelector(state => state.user);
     const [items, setItems] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
+    const [isOpenAddCategory, setIsOpenAddCategory] = useState(false);
 
     useEffect(() => {
         if (selectedDate) {
@@ -65,23 +68,34 @@ const Category = ({shown}) => {
     }
 
     return (
-        <div className="category-wrapper">
-            <MonthSlider onChange={setSelectedDate}/>
-            {items && items.length > 0 ?
-                <div className="chart">
-                    <div className="spending">
-                        <div className="spending-content">
-                            <p>Витрати</p>
-                            <p className="total">{calculateTotal(items)} ₴</p>
+        <>
+            <AddCategory
+                open={isOpenAddCategory}
+                onClose={() => {
+                    setIsOpenAddCategory(false);
+                }}
+                onSuccess={() => {
+                    handleCategories(dayjs().get('month'), dayjs().get('year'))
+                }}
+            />
+            <div className="category-wrapper">
+                <MonthSlider onChange={setSelectedDate}/>
+                {items && items.length > 0 ?
+                    <div className="chart">
+                        <div className="spending">
+                            <div className="spending-content">
+                                <p>Витрати</p>
+                                <p className="total">{calculateTotal(items)} ₴</p>
+                            </div>
                         </div>
-                    </div>
-                    {calculateTotal(items) !== 0 ?
-                        <Doughnut data={itemsDataset(items)} options={chartOptions}/> :
-                        <Doughnut data={defaultDataset} options={chartOptions}/>
-                    }
-                </div> : null}
-            <CategoryList data={items}/>
-        </div>
+                        {calculateTotal(items) !== 0 ?
+                            <Doughnut data={itemsDataset(items)} options={chartOptions}/> :
+                            <Doughnut data={defaultDataset} options={chartOptions}/>
+                        }
+                    </div> : null}
+                <CategoryList data={items} addNew={() => setIsOpenAddCategory(true)}/>
+            </div>
+        </>
     );
 
 };

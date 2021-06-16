@@ -4,4 +4,11 @@
     align-items: center;
     flex-wrap: wrap;
     flex: 2;
+    .addNew{
+        .image{
+            width: 41px !important;
+            height: 41px !important;
+            border: 2px dashed rgba(114, 114, 114, 0.5);
+        }
+    }
 }

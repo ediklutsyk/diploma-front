@@ -17,6 +17,18 @@ export const signUp = (data) => {
     })
 };
 
+//Categories
+
+export const createCategory = (payload) => {
+    return axios.post(`${SERVER_URL}/categories`, payload.data,
+        {headers: {Authorization: 'Bearer ' + payload.token}}).then((response) => {
+        return response;
+    }).catch((error) => {
+        console.log(error)
+        return error;
+    })
+};
+
 export const getCategories = (payload) => {
     return axios.get(`${SERVER_URL}/categories/user?month=${payload.month}&year=${payload.year}`,
         {headers: {Authorization: 'Bearer ' + payload.token}}).then((response) => {
@@ -47,8 +59,8 @@ export const getBills = (payload) => {
 export const newOperation = (payload) => {
     return axios.post(`${SERVER_URL}/operations`, payload.data, {headers: {Authorization: 'Bearer ' + payload.token}})
         .then((response) => {
-        return response;
-    }).catch((error) => {
-        return error;
-    })
+            return response;
+        }).catch((error) => {
+            return error;
+        })
 };

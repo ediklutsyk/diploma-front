@@ -5,9 +5,12 @@ import OperationItem from '../operation-item';
 
 import './styles.scss';
 import CategoryItem from "../category-item";
+import Button from "@material-ui/core/Button";
+import Icon from "../icon";
 
 const CategoryList = ({
-    data
+    data,
+    addNew
 }) => {
     return (
         <div className="category-list">
@@ -21,6 +24,11 @@ const CategoryList = ({
                     percent={item.percent}
                 />
             )) : null}
+            <div className="category-item-box" >
+                <div className={'addNew'} onClick={addNew}>
+                    <Icon icon={'add.svg'} color={'#727272'}/>
+                </div>
+            </div>
         </div>
     );
 };
