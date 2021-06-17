@@ -10,8 +10,19 @@
   margin-bottom: 20px;
 }
 .bill-wrapper .bill-header .bills-title {
+  display: flex;
+  align-items: center;
   color: #252C3B;
+}
+.bill-wrapper .bill-header .bills-title span {
   font-size: 18px;
+  vertical-align: middle;
+}
+.bill-wrapper .bill-header .bills-title .add-button {
+  margin-top: 2px;
+  font-size: 14px;
+  margin-left: 10px;
+  color: #616C7A;
 }
 .bill-wrapper .bill-header .sum {
   color: #1F8B24;

@@ -5,6 +5,9 @@
   flex-wrap: wrap;
   flex: 2;
 }
+.category-list .category-item-box {
+  min-width: 40%;
+}
 .category-list .addNew .image {
   width: 41px !important;
   height: 41px !important;

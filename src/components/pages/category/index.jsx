@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import './styles.scss';
 import MonthSlider from "../../core/month-slider";
@@ -8,6 +8,7 @@ import {Doughnut} from "react-chartjs-2";
 import CategoryList from "../../core/category-list";
 import AddCategory from "../../core/add-category";
 import dayjs from "dayjs";
+import allActions from "../../../store/actions";
 
 
 const createDataset = (data, colors) => {
@@ -40,13 +41,16 @@ const chartOptions = {
     }
 }
 
-const Category = ({shown}) => {
+const Category = ({shown, addExpense}) => {
+    const dispatch = useDispatch();
     const userData = useSelector(state => state.user);
+    // todo useSelector for categories isUpdateNeeded state
     const [items, setItems] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
     const [isOpenAddCategory, setIsOpenAddCategory] = useState(false);
 
     useEffect(() => {
+        dispatch(allActions.expense.removeCategory());
         if (selectedDate) {
             handleCategories(selectedDate.get('month'), selectedDate.get('year')).catch(error => {
                 console.log('handled categories by selected date error', error)
@@ -93,7 +97,9 @@ const Category = ({shown}) => {
                             <Doughnut data={defaultDataset} options={chartOptions}/>
                         }
                     </div> : null}
-                <CategoryList data={items} addNew={() => setIsOpenAddCategory(true)}/>
+                <CategoryList data={items} addNew={() => setIsOpenAddCategory(true)}
+                              addExpense={addExpense}
+                />
             </div>
         </>
     );

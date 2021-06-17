@@ -47,6 +47,15 @@ export const getOperations = (payload) => {
     })
 };
 
+export const createBill = (payload) => {
+    return axios.post(`${SERVER_URL}/bills`, payload.data,
+        {headers: {Authorization: 'Bearer ' + payload.token}}).then((response) => {
+        return response;
+    }).catch((error) => {
+        return error;
+    })
+};
+
 export const getBills = (payload) => {
     return axios.get(`${SERVER_URL}/bills/user`,
         {headers: {Authorization: 'Bearer ' + payload}}).then((response) => {
@@ -58,6 +67,42 @@ export const getBills = (payload) => {
 
 export const newOperation = (payload) => {
     return axios.post(`${SERVER_URL}/operations`, payload.data, {headers: {Authorization: 'Bearer ' + payload.token}})
+        .then((response) => {
+            return response;
+        }).catch((error) => {
+            return error;
+        })
+};
+
+export const newTemplate = (payload) => {
+    return axios.post(`${SERVER_URL}/templates`, payload.data, {headers: {Authorization: 'Bearer ' + payload.token}})
+        .then((response) => {
+            return response;
+        }).catch((error) => {
+            return error;
+        })
+};
+
+export const getTemplates = (payload) => {
+    return axios.get(`${SERVER_URL}/templates/user`, {headers: {Authorization: 'Bearer ' + payload.token}})
+        .then((response) => {
+            return response;
+        }).catch((error) => {
+            return error;
+        })
+};
+
+export const proceedAction = (payload) => {
+    return axios.post(`${SERVER_URL}/bills/action`, payload.data, {headers: {Authorization: 'Bearer ' + payload.token}})
+        .then((response) => {
+            return response;
+        }).catch((error) => {
+            return error;
+        })
+};
+
+export const getStats = (payload) => {
+    return axios.get(`${SERVER_URL}/categories/stats`, {headers: {Authorization: 'Bearer ' + payload.token}})
         .then((response) => {
             return response;
         }).catch((error) => {

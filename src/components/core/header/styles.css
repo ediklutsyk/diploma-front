@@ -2,6 +2,7 @@
   position: fixed;
   left: 0;
   top: 0;
+  background-color: #ffffff;
   padding: 15px;
   height: 70px;
   width: calc(100% - 30px);
@@ -9,7 +10,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  background-color: white;
+  z-index: 999;
 }
 .header-app .logo-app {
   height: 90px;

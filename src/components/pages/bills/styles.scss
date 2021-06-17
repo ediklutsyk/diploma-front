@@ -8,8 +8,19 @@
         width: 100%;
         margin-bottom: 20px;
         .bills-title {
+            display: flex;
+            align-items: center;
             color: #252C3B;
-            font-size: 18px;
+            span{
+                font-size: 18px;
+                vertical-align: middle;
+            }
+            .add-button{
+                margin-top: 2px;
+                font-size: 14px;
+                margin-left: 10px;
+                color: #616C7A;
+            }
         }
         .sum {
             color: #1F8B24;

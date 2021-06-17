@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Dialog from '@material-ui/core/Dialog';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import dayjs from 'dayjs';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -8,23 +8,24 @@ import DialogActions from '@material-ui/core/DialogActions';
 import TextField from '@material-ui/core/TextField';
 import './styles.scss';
 import Button from '@material-ui/core/Button';
-import {getBills, getCategories, newOperation} from "../../../utils/api";
+import {getBills, getCategories, newOperation, newTemplate} from "../../../utils/api";
 import {lighten} from "@material-ui/core";
 
 import Icon from "../icon";
 import CategoryItem from '../category-item';
 import BillItem from '../bill-item';
 import InputAdornment from "@material-ui/core/InputAdornment";
+import allActions from "../../../store/actions";
 
 
 const defaultBill = {color: '#0F56B3', name: 'Основна картка', icon: 'card.svg'};
-const defaultCategory = {color: '#252C3B', name: 'Iнше', icon: 'more.svg'};
-
 
 const AddExpense = ({
                         open,
                         onClose,
+                        modalType
                     }) => {
+    const dispatch = useDispatch();
     const userData = useSelector(state => state.user);
 
     const [openCategories, setOpenCategories] = useState(false);
@@ -34,7 +35,7 @@ const AddExpense = ({
     const [categories, setCategories] = useState([]);
     const [bills, setBills] = useState([]);
     const [selectedBill, setSelectedBill] = useState(defaultBill);
-    const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
+    const selectedCategory = useSelector(state => state.expense.category);
 
     const handleCategories = () => getCategories({
         token: userData.token,
@@ -46,7 +47,7 @@ const AddExpense = ({
             setCategories(data.data);
             const category = data.data.find(item => item.name === 'Інше')
             if (category) {
-                setSelectedCategory(category)
+                dispatch(allActions.expense.setCategory(category));
             }
         }
     });
@@ -63,20 +64,36 @@ const AddExpense = ({
         console.log('handleCreate 1', selectedCategory, selectedBill)
         const data = {
             amount: calculateSum(),
-            type: 'spend',
             category_id: selectedCategory._id,
             bill_id: selectedBill._id,
-            description: description
+        }
+        if (modalType !== 'template') {
+            newOperation({
+                token: userData.token,
+                data: {
+                    ...data,
+                    type: 'spend',
+                    description: description
+                }
+            }).then(r => {
+                console.log('Operations created', r)
+                onClose();
+                clearStates()
+            })
+        } else {
+            newTemplate({
+                token: userData.token,
+                data: {
+                    ...data,
+                    name: description
+                }
+            }).then(r => {
+                console.log('Template created', r)
+                onClose();
+                clearStates()
+            })
         }
         console.log('handleCreate 2', data)
-        newOperation({
-            token: userData.token,
-            data: data
-        }).then(r => {
-            console.log('Operations created', r)
-            onClose();
-            clearStates()
-        })
     }
 
     const clearStates = () => {
@@ -87,7 +104,6 @@ const AddExpense = ({
         setSum('')
         setDescription('')
         setSelectedBill(defaultBill)
-        setSelectedCategory(defaultCategory)
     }
 
     const calculateSum = () => {
@@ -101,11 +117,12 @@ const AddExpense = ({
         handleBills();
     }, []);
 
+    const typeName = modalType === 'template' ? 'шаблон' : 'витрату'
     return (
         <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
             <DialogTitle>
                 <div className={'dialog-title'}>
-                    <p>Додати витрату</p>
+                    <p>Додати {typeName}</p>
                     <div className="icon" onClick={onClose}>
                         <Icon icon={'close.svg'} color={'#72778D'} noBackground={true}/>
                     </div>
@@ -158,7 +175,7 @@ const AddExpense = ({
                                 total={item.totalByCategory}
                                 percent={item.percent}
                                 onClick={() => {
-                                    setSelectedCategory(item);
+                                    dispatch(allActions.expense.setCategory(item));
                                     setOpenCategories(false);
                                 }}
                             />
@@ -167,7 +184,7 @@ const AddExpense = ({
                 }
                 {openBills ?
                     <div className="bills-list">
-                        {categories.length ? bills.filter(item => item.type !== 'storing').map((item) => (
+                        {bills.length ? bills.filter(item => item.type !== 'storing').map((item) => (
                             <BillItem
                                 icon={item.icon}
                                 name={item.name}

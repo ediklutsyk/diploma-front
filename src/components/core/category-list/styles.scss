@@ -4,6 +4,9 @@
     align-items: center;
     flex-wrap: wrap;
     flex: 2;
+    .category-item-box{
+        min-width: 40%;
+    }
     .addNew{
         .image{
             width: 41px !important;

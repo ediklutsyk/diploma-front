@@ -3,4 +3,27 @@
   padding-top: 15px;
 }
 
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.categories .category-row {
+  display: flex;
+  margin-bottom: 10px;
+  width: 90%;
+}
+.categories .category-row .right-side {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.categories .category-row .right-side .name-sum {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 /*# sourceMappingURL=styles.css.map */

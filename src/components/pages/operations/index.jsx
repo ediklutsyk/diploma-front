@@ -7,53 +7,6 @@ import MonthSlider from '../../core/month-slider';
 import {getOperations} from "../../../utils/api";
 import dayjs from "dayjs";
 
-const data = [
-    {
-        icon: '',
-        categoryName: 'Продукти',
-        categoryColor: '#0F56B3',
-        billName: 'Основна картка',
-        sum: '36',
-        comment: 'Сiльпо',
-        isIncome: false,
-        date: '2021-06-09',
-        id: 1
-    },
-    {
-        icon: '',
-        categoryName: 'Продукти',
-        categoryColor: '#0F56B3',
-        billName: 'Основна картка',
-        sum: '36',
-        comment: 'Сiльпо',
-        isIncome: false,
-        date: '2021-06-09',
-        id: 2
-    },
-    {
-        icon: '',
-        categoryName: 'Продукти',
-        categoryColor: '#0F56B3',
-        billName: 'Основна картка',
-        sum: '36',
-        comment: 'Сiльпо',
-        isIncome: false,
-        date: '2021-06-06',
-        id: 3
-    },
-    {
-        icon: '',
-        categoryName: 'Продукти',
-        categoryColor: '#0F56B3',
-        billName: 'Основна картка',
-        sum: '36',
-        comment: 'Сiльпо',
-        isIncome: false,
-        date: '2021-06-03',
-        id: 4
-    }
-];
-
 const Operations = ({shown}) => {
     console.log('shown', shown)
     const dispatch = useDispatch();

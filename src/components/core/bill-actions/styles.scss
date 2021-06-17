@@ -1,0 +1,28 @@
+.image-name{
+  //background-color: yellow;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  .icon-selector{
+    margin-right: 15px;
+    .image{
+      width: 50px !important;
+      height: 50px !important;
+    }
+  }
+  input{
+    font-size: 18px;
+  }
+}
+.balance{
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  .currency{
+    padding-top: 5px;
+  }
+  input{
+    text-align: center;
+    font-size: 20px;
+  }
+}

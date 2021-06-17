@@ -9,6 +9,7 @@ import Icon from "../icon";
 
 
 const iconsNames = [
+    'more.svg',
     // 'ad_units.svg',
     // 'airplanemode_active.svg',
     'attractions.svg',

@@ -4,6 +4,7 @@ import './styles.scss';
 import Icon from "../icon";
 
 const BillItem = ({
+    id,
     icon,
     name,
     color,
@@ -15,6 +16,7 @@ const BillItem = ({
         <div className="bill-item-box" onClick={() => {
             if(onClick)
                 onClick({
+                    id,
                     icon,
                     name: name,
                     color: color,

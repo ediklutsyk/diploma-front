@@ -5,12 +5,14 @@ import './styles.scss';
 import Icon from "../icon";
 
 const AccumulationItem = ({
+                              id,
                               name,
                               icon,
                               color,
                               balance,
                               currency,
-                              goals
+                              goals,
+                              onClick
                           }) => {
 
     const calculateProgressBarValue = (completed, goalSum) => {
@@ -18,7 +20,17 @@ const AccumulationItem = ({
     };
 
     return (
-        <div className="accumulation-item">
+        <div className="accumulation-item" onClick={() => {
+            onClick({
+                id,
+                name,
+                icon,
+                color,
+                balance,
+                currency,
+                goals,
+            })
+        }}>
             <Icon icon={icon} color={color}/>
             <div className="right-row">
                 <div className="name-sum">
